@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="colorPrimary">#3F51B5</color>
+    <color name="colorPrimaryDark">#303F9F</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="black">#000000</color>
+    <color name="mistyrose">#ffe4e1</color>
+    <color name="uk1">#fff0b2</color>
+    <color name="red">#FF0000</color>
+    <color name="red30">#990000</color>
+    <color name="red75">#ff8080</color>
+    <color name="red55">#ff1a1a</color>
+    <color name="CYAN">#00ffff</color>
+    <color name="rgb180">#B4B4B4</color>
+    <color name="uk3">#c3c3c3</color>
+    <color name="uk2">#EFEFFA</color>
+    <color name="blue">#0000ff</color>
+    <color name="blue195">#00bfff</color>
+    <color name="purple">#cc00cc</color><!--rgb(204,0,204)-->
+    <color name="green">#00ff00</color>
+    <color name="green2">#009900</color>
+    <color name="yellow">#ffff00</color>
+    <color name="oc3">#990000</color><!--rgb(153, 0, 0)-->
+    <color name="orange2">#ffa500</color><!--rgb(255,65,0)-->
+    <color name="gray">#808080</color>
+    <color name="indigo">#9600ff</color>
+    <color name="white">#ffffff</color>
+    <color name="uk4">#D6D4D7</color>
+    <color name="main">#ff2d00</color>
+    <color name="main0">#f44336</color>
+    <color name="onButtonSelected">#ffa533</color><!--rgb(255, 165, 51)-->
+    <color name="pink">#FFC0CB</color>
+    <color name="uk5">#FFC72705</color>
+    <color name="A400">#FF1744</color>
+    <color name="A200">#FF5252</color>
+    <color name="PA400">#D500F9</color>
+    <color name="PA200">#E040FB</color>
+    <color name="PA700">#AA00FF</color>
+    <color name="PA300">#671c74</color>
+</resources>
