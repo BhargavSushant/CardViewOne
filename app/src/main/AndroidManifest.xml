@@ -2,6 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.attosectechnolabs.cardviewone">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -23,9 +28,16 @@
             </intent-filter>
 
         </activity>
-<activity android:name=".New_Thread">
-    <action android:name="com.attosectechnolabs.cardviewone.New_Thread"></action>
-</activity>
+
+        <activity android:name=".ThreadWithTitle">
+
+            <intent-filter>
+                <action android:name="com.attosectechnolabs.cardviewone.ThreadWithTitle"></action>
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+
+        </activity>
+
     </application>
 
 </manifest>

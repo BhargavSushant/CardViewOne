@@ -9,7 +9,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -31,38 +30,42 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class forum extends AppCompatActivity
-{
+/**
+ * Created by dev on 16-Aug-16.
+ */
+public class ThreadWithTitle extends AppCompatActivity {
 
-    String thread_text, User = "Test";
+
+    String post_text, User = "TestUser", ThreadID="T16081442",ThreadText;
     Context ctx;
-    EditText new_thread_text;
-    TextView resulttemp;
-    Button submit_thread, cancel_thread,create_new_thread;
-    LinearLayout new_thread_layout_part;
-    private static final String REGISTER_URL = "http://attosectechnolabs.com/Projects/eduapp/thread.php";
-    public static final String KEY_THREAD = "thread_text";
+    EditText ETPost;
+    TextView thread_topic,UserNamePost,PostByUser,DateOfPost,thread_id;
+    private static final String REGISTER_URL = "http://attosectechnolabs.com/Projects/eduapp/insertPost.php";
+    public static final String KEY_POST = "Post";
     public static final String KEY_USERNAME = "User";
+    public static final String KEY_THREADID = "ThreadID";
 
 
     //==========================================
 
     List<GetDataAdapter> GetDataAdapter1;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView2;
     RecyclerView.LayoutManager recyclerViewlayoutManager;
     RecyclerView.Adapter recyclerViewadapter;
     ProgressBar progressBar;
 
-    String GET_JSON_DATA_HTTP_URL = "http://attosectechnolabs.com/Projects/eduapp/getThreadService.php";
+    String GET_JSON_DATA_HTTP_URL = "http://attosectechnolabs.com/Projects/eduapp/getAllPosts.php";
 
     String JSON_ID="id";
-    String JSON_THREAD_ID = "ThreadID";
-    String JSON_THREAD_TEXT = "thread_text" ;
+    String JSON_POST_ID = "PostID";
+    String JSON_POST_TEXT = "Post" ;
     String JSON_USER_NAME = "User";
-    String JSON_FLAG = "Flag";
-    String JSON_LIKES = "Likes";
+    String JSON_FLAG = "FlagPost";
+    String JSON_LIKES = "LikesPost";
 
-    Button button;
+
+
+    Button submit_post_btn, cancel_post_btn;
 
     JsonArrayRequest jsonArrayRequest ;
     RequestQueue requestQueue ;
@@ -70,109 +73,98 @@ public class forum extends AppCompatActivity
     // ======================================
 
 
-    public forum() {
-    }
+    public ThreadWithTitle(){}
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.thread_with_title);
+
+        /*this code to get ThreadID and ThreadText send from putextra method*/
         Intent intent = getIntent();
-        setContentView(R.layout.forum);
+        ThreadID=intent.getStringExtra("ThreadID1");
+        ThreadText=intent.getStringExtra("ThreadText1");
 
-                submit_thread = (Button) findViewById(R.id.submit_thread);
-                cancel_thread = (Button) findViewById(R.id.cancel_thread);
-                create_new_thread = (Button)findViewById(R.id.create_new_thread);
-                new_thread_text = (EditText) findViewById(R.id.new_thread_text);
-                resulttemp = (TextView) findViewById(R.id.resulttemp);
-                new_thread_layout_part = (LinearLayout) findViewById(R.id.new_thread_layout_part);
+        thread_topic = (TextView) findViewById(R.id.ThreadTopicPost);
+        thread_id = (TextView) findViewById(R.id.ThreadIDPost);
+        UserNamePost = (TextView) findViewById(R.id.UserNamePost);
+        PostByUser   = (TextView) findViewById(R.id.PostByUser);
+        DateOfPost   = (TextView) findViewById(R.id.DateOfPost);
+        ETPost = (EditText) findViewById(R.id.ETPost);
+        submit_post_btn = (Button) findViewById(R.id.submit_post);
+        cancel_post_btn = (Button) findViewById(R.id.cancel_post);
+
+    /*this code to SET ThreadID and ThreadText send from putextra method*/
+
+        thread_topic.setText(ThreadText);
+        thread_id.setText(ThreadID);
 
 
-                //======================================
+        //======================================
         GetDataAdapter1 = new ArrayList<>();
-        recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
+        recyclerView2 = (RecyclerView) findViewById(R.id.recyclerView2);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-        button = (Button)findViewById(R.id.button) ;
-        recyclerView.setHasFixedSize(true);
+        recyclerView2.setHasFixedSize(true);
         recyclerViewlayoutManager = new LinearLayoutManager(this);
-        recyclerView.setLayoutManager(recyclerViewlayoutManager);
+        recyclerView2.setLayoutManager(recyclerViewlayoutManager);
         //======================================
 
-        // set new_thread_layout_part VISIBLE.GONE
-            new_thread_layout_part.setVisibility(View.GONE);
-
-        // get threads from database
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                JSON_DATA_WEB_CALL();
-            }});
+        //========================= get data to send ============================//
 
 
-        submit_thread.setOnClickListener(new View.OnClickListener() {
+
+    //    progressBar.setVisibility(View.VISIBLE);
+        JSON_DATA_WEB_CALL();
+
+        submit_post_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertThreadText();
-                // after submitting thread invisible the new_thread_layout_part
-                new_thread_layout_part.setVisibility(View.GONE);
+                post_text = ETPost.getText().toString();
+                insertPost();
 
             }// end view
-             });//end submit_thread.setOnclickListener
+        });//end submit_thread.setOnclickListener
 
-        cancel_thread.setOnClickListener(new View.OnClickListener() {
+        cancel_post_btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                new_thread_layout_part.setVisibility(View.GONE);
             }
         });
 
-        create_new_thread.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                // on clicking new_thread_layout_part we need new thread layout to be visible
-                new_thread_layout_part.setVisibility(View.VISIBLE);
-        }
-        });// end new_thread_layout_part
+    }
 
 
+    private void insertPost() {
 
-            }
-
-    /* =========================== functions =================================*/
-
-    private void insertThreadText() {
-
-        final String thread_text = new_thread_text.getText().toString();
-        resulttemp.setText(thread_text);
+        final String thread_text = ETPost.getText().toString();
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Toast.makeText(forum.this, response, Toast.LENGTH_LONG).show();
+                        Toast.makeText(ThreadWithTitle.this, response, Toast.LENGTH_LONG).show();
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(forum.this, error.toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ThreadWithTitle.this, error.toString(), Toast.LENGTH_LONG).show();
                     }
                 }) {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put(KEY_THREAD, thread_text);
+                params.put(KEY_POST, post_text);
                 params.put(KEY_USERNAME, User);
+                params.put(KEY_THREADID, ThreadID);
                 return params;
             }
         };
 
-        RequestQueue requestQueue = Volley.newRequestQueue(forum.this);
+        RequestQueue requestQueue = Volley.newRequestQueue(ThreadWithTitle.this);
         requestQueue.add(stringRequest);
     }
-
-
 
     public void JSON_DATA_WEB_CALL(){
 
@@ -184,7 +176,7 @@ public class forum extends AppCompatActivity
 
                         progressBar.setVisibility(View.GONE);
 
-                        JSON_PARSE_DATA_AFTER_WEBCALL(response);
+                       JSON_PARSE_DATA_AFTER_WEBCALL(response);
                     }
                 },
                 new Response.ErrorListener() {
@@ -210,8 +202,8 @@ public class forum extends AppCompatActivity
                 json = array.getJSONObject(i);
 
                 GetDataAdapter2.setId(json.getInt(JSON_ID));
-                GetDataAdapter2.setThreadID(json.getString(JSON_THREAD_ID));
-                GetDataAdapter2.setThread_text(json.getString(JSON_THREAD_TEXT));
+                GetDataAdapter2.setThreadID(json.getString(JSON_POST_ID));
+                GetDataAdapter2.setThread_text(json.getString(JSON_POST_TEXT));
                 GetDataAdapter2.setUser(json.getString(JSON_USER_NAME));
                 GetDataAdapter2.setFlag(json.getInt(JSON_FLAG));
                 GetDataAdapter2.setLikes(json.getInt(JSON_LIKES));
@@ -224,10 +216,10 @@ public class forum extends AppCompatActivity
             GetDataAdapter1.add(GetDataAdapter2);
         }
 
-        recyclerViewadapter = new RecyclerViewAdapter(GetDataAdapter1, this);
+        recyclerViewadapter = new RVAdapterPosts(GetDataAdapter1, this);
 
-        recyclerView.setAdapter(recyclerViewadapter);
+        recyclerView2.setAdapter(recyclerViewadapter);
     }
 
 
-}// end class
+}
