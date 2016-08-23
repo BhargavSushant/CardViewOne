@@ -43,7 +43,9 @@ card_view:cardMaxElevation="7dp"
             android:layout_height="100dp"
             android:id="@+id/thread_text"
             android:text="\nThread Text Here"
+            android:textSize="@dimen/text_size_title_card"
             />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="50dp"

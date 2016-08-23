@@ -47,7 +47,8 @@ android:layout_margin="5dp">
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:id="@+id/PostByUser"
-    android:text="here post data will come"/>
+    android:text="here post data will come"
+    android:textSize="@dimen/text_size_post"/>
 
 
 

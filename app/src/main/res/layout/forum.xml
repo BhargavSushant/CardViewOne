@@ -30,15 +30,11 @@ android:id="@+id/recyclerView1"
 android:layout_width="match_parent"
 android:layout_height="wrap_content"
 android:layout_below="@+id/NewThreadTextLayout"
-android:layout_margin="5dp">
+android:layout_margin="5dp"
+android:background="@color/white"
+    >
 </android.support.v7.widget.RecyclerView>
 
-<Button
-android:layout_width="match_parent"
-android:layout_height="wrap_content"
-android:id="@+id/button"
-android:text="load forum"
-android:layout_below="@+id/recyclerView1"
-/>
+
 
 </RelativeLayout>

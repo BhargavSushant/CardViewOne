@@ -12,6 +12,9 @@ public class GetDataAdapter {
     String PostTextTV, UserNameTV, ThreadTextTV;
     Integer FlagIV,   LikeIV;
 
+    String QP_Code;
+    Integer QP_Id;
+
 
     public String getThreadID(){
         return ThreadID;
@@ -79,12 +82,19 @@ public class GetDataAdapter {
         this.Id=Id;
     }
 
-    public void setUserNameTV(){        	this.UserNameTV	=UserNameTV;    }
-    public void setThreadTextTV(){        	this.ThreadTextTV	=ThreadTextTV;    }
-    public void setPostTextTV(){        	this.PostTextTV	=PostTextTV;    }
-    public void setLikeIV(){        	this.LikeIV	=LikeIV;    }
-    public void setFlagIV(){        	this.FlagIV	=FlagIV;    }
+    public void setUserNameTV( String UserNameTV){        	this.UserNameTV	=UserNameTV;    }
+    public void setThreadTextTV(String ThreadTextTV){        	this.ThreadTextTV	=ThreadTextTV;    }
+    public void setPostTextTV(String PostTextTV){        	this.PostTextTV	=PostTextTV;    }
+    public void setLikeIV(Integer LikeIV){        	this.LikeIV	=LikeIV;    }
+    public void setFlagIV(Integer FlagIV){        	this.FlagIV	=FlagIV;    }
 
 
+    // for QuizActivity
+
+    public Integer getQP_Id(){return QP_Id;}
+    public void setQP_Id(Integer QP_Id){this.QP_Id = QP_Id;}
+
+    public String getQP_Code(){return QP_Code;}
+    public void setQP_Code(String QP_Code){this.QP_Code = QP_Code;}
 
 }

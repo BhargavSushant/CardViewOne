@@ -79,7 +79,9 @@ public ThreadWithTitle(){}
 @Override
 protected void onCreate(Bundle savedInstanceState) {
 super.onCreate(savedInstanceState);
-setContentView(R.layout.thread_with_title);
+    setTitle("ITI Forum");
+
+    setContentView(R.layout.thread_with_title);
 
 /*this code to get ThreadID and ThreadText send from putextra method*/
 Intent intent = getIntent();
@@ -121,7 +123,9 @@ submit_post_btn.setOnClickListener(new View.OnClickListener() {
     @Override
     public void onClick(View view) {
         post_text = ETPost.getText().toString();
-        insertPost();
+        if(post_text.isEmpty()){ETPost.setError("This feild can not be empty ...");}
+        else {insertPost();}
+        ETPost.setText("");
 
     }// end view
 });//end submit_thread.setOnclickListener
@@ -203,12 +207,12 @@ for(int i = 0; i<array.length(); i++) {
     try {
         json = array.getJSONObject(i);
 
-        GetDataAdapter2.setId(json.getInt(JSON_ID));
-        GetDataAdapter2.setThreadID(json.getString(JSON_POST_ID));
-        GetDataAdapter2.setThread_text(json.getString(JSON_POST_TEXT));
-        GetDataAdapter2.setUser(json.getString(JSON_USER_NAME));
-        GetDataAdapter2.setFlag(json.getInt(JSON_FLAG));
-        GetDataAdapter2.setLikes(json.getInt(JSON_LIKES));
+       // GetDataAdapter2.setId(json.getInt(JSON_ID));
+       // GetDataAdapter2.setThreadID(json.getString(JSON_POST_ID));
+        GetDataAdapter2.setPostTextTV(json.getString(JSON_POST_TEXT));
+        GetDataAdapter2.setUserNameTV(json.getString(JSON_USER_NAME));
+        GetDataAdapter2.setFlagIV(json.getInt(JSON_FLAG));
+        GetDataAdapter2.setLikeIV(json.getInt(JSON_LIKES));
 
 
     } catch (JSONException e) {

@@ -13,7 +13,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        setTitle("ITI Preview App");
+
         Button ThreadBtn = (Button)findViewById(R.id.Thread_Button);
+        Button QBBtn = (Button) findViewById(R.id.QB_Button);
 
         ThreadBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -24,6 +27,17 @@ public class MainActivity extends AppCompatActivity {
 
             }
         });
+
+        QBBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent=new Intent(MainActivity.this,QuizActivity.class);
+                // start activity
+                startActivity(intent);
+
+            }
+        });
+
 
 
     }

@@ -78,6 +78,7 @@ public class forum extends AppCompatActivity
     {
         super.onCreate(savedInstanceState);
         Intent intent = getIntent();
+        setTitle("ITI Forum");
         setContentView(R.layout.forum);
 
                 submit_thread = (Button) findViewById(R.id.submit_thread);
@@ -88,11 +89,10 @@ public class forum extends AppCompatActivity
                 new_thread_layout_part = (LinearLayout) findViewById(R.id.new_thread_layout_part);
 
 
-                //======================================
+        //======================================
         GetDataAdapter1 = new ArrayList<>();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView1);
         progressBar = (ProgressBar) findViewById(R.id.progressBar1);
-        button = (Button)findViewById(R.id.button) ;
         recyclerView.setHasFixedSize(true);
         recyclerViewlayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(recyclerViewlayoutManager);
@@ -102,20 +102,23 @@ public class forum extends AppCompatActivity
             new_thread_layout_part.setVisibility(View.GONE);
 
         // get threads from database
-        button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                progressBar.setVisibility(View.VISIBLE);
-                JSON_DATA_WEB_CALL();
-            }});
-
+            progressBar.setVisibility(View.VISIBLE);
+            JSON_DATA_WEB_CALL();
 
         submit_thread.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                insertThreadText();
-                // after submitting thread invisible the new_thread_layout_part
-                new_thread_layout_part.setVisibility(View.GONE);
+
+                thread_text = new_thread_text.getText().toString();
+                if(thread_text.isEmpty()){new_thread_text.setError("This field can not be empty ...");}
+                else {
+                    insertThreadText(thread_text);
+                    // after submitting thread invisible the new_thread_layout_part
+                    new_thread_text.setText("");
+                    new_thread_layout_part.setVisibility(View.GONE);
+
+                }
+
 
             }// end view
              });//end submit_thread.setOnclickListener
@@ -141,10 +144,9 @@ public class forum extends AppCompatActivity
 
     /* =========================== functions =================================*/
 
-    private void insertThreadText() {
+    private void insertThreadText(String thread_text) {
 
-        final String thread_text = new_thread_text.getText().toString();
-        resulttemp.setText(thread_text);
+        //resulttemp.setText(thread_text);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, REGISTER_URL,
                 new Response.Listener<String>() {
@@ -162,7 +164,7 @@ public class forum extends AppCompatActivity
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> params = new HashMap<String, String>();
-                params.put(KEY_THREAD, thread_text);
+                params.put(KEY_THREAD, forum.this.thread_text);
                 params.put(KEY_USERNAME, User);
                 return params;
             }

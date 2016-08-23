@@ -3,9 +3,8 @@
     package="com.attosectechnolabs.cardviewone">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
 
     <application
         android:allowBackup="true"
@@ -21,23 +20,27 @@
             </intent-filter>
         </activity>
         <activity android:name=".forum">
-
             <intent-filter>
-                <action android:name="com.attosectechnolabs.cardviewone.forum"></action>
+                <action android:name="com.attosectechnolabs.cardviewone.forum" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
-
         <activity android:name=".ThreadWithTitle">
-
             <intent-filter>
-                <action android:name="com.attosectechnolabs.cardviewone.ThreadWithTitle"></action>
+                <action android:name="com.attosectechnolabs.cardviewone.ThreadWithTitle" />
+
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
-
         </activity>
+        <activity android:name=".QuizActivity">
+            <intent-filter>
+                <action android:name="com.attosectechnolabs.cardviewone.QuizActivity" />
 
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".QuestionPaper"></activity>
     </application>
 
 </manifest>

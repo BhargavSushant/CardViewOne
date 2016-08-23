@@ -17,7 +17,6 @@ public class RVAdapterPosts extends RecyclerView.Adapter<RVAdapterPosts.ViewHold
 
     Context context;
 
-  //  public List<GetDataAdapter> getDataAdapter1;
     public List<GetDataAdapter> getDataAdapter;
 
     public RVAdapterPosts(List<GetDataAdapter> getDataAdapter, Context context) {
@@ -28,7 +27,8 @@ public class RVAdapterPosts extends RecyclerView.Adapter<RVAdapterPosts.ViewHold
 
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_post, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.single_post,
+                parent, false);
 
         ViewHolder viewHolder = new ViewHolder(v);
 
@@ -40,7 +40,9 @@ public class RVAdapterPosts extends RecyclerView.Adapter<RVAdapterPosts.ViewHold
 
         GetDataAdapter getDataAdapter1 =  getDataAdapter.get(position);
 
-        holder.PostTextTV.setText(getDataAdapter1.getThreadID());
+        holder.PostTextTV.setText(getDataAdapter1.getPostTextTV());
+        holder.UserNameTV.setText(getDataAdapter1.getUserNameTV());
+
 
     }
 
@@ -71,7 +73,6 @@ public class RVAdapterPosts extends RecyclerView.Adapter<RVAdapterPosts.ViewHold
             PostTextTV = (TextView) itemView.findViewById(R.id.PostByUser);
 
             LikeIV = (ImageView) itemView.findViewById(R.id.like_post);
-           // CommentIV = (ImageView) itemView.findViewById(R.id.comment);
             FlagIV = (ImageView) itemView.findViewById(R.id.flag_post);
 
 
