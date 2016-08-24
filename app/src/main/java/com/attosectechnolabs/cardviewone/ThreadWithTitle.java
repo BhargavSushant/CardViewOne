@@ -171,8 +171,8 @@ requestQueue.add(stringRequest);
 }
 
 public void JSON_DATA_WEB_CALL(){
-String GET_JSON_DATA_HTTP_URL2 = GET_JSON_DATA_HTTP_URL+"?ThreadID="+ThreadID;
 
+String GET_JSON_DATA_HTTP_URL2 = GET_JSON_DATA_HTTP_URL+"?ThreadID="+ThreadID;
 
     jsonArrayRequest = new JsonArrayRequest(GET_JSON_DATA_HTTP_URL2,
 

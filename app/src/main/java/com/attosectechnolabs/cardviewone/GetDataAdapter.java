@@ -11,6 +11,7 @@ public class GetDataAdapter {
     String ThreadIDPost;
     String PostTextTV, UserNameTV, ThreadTextTV;
     Integer FlagIV,   LikeIV;
+    String id ,Question_id ,Question ,OptA ,OptB ,OptC ,OptD,Answer;
 
     String QP_Code;
     Integer QP_Id;
@@ -96,5 +97,26 @@ public class GetDataAdapter {
 
     public String getQP_Code(){return QP_Code;}
     public void setQP_Code(String QP_Code){this.QP_Code = QP_Code;}
+
+    // for QuestionPaper
+
+
+    public String getQuestion_id	()	{	return	Question_id;	}
+    public String getQuestion	()	{	return	Question;	}
+    public String getOptA	()	{	return	OptA;	}
+    public String getOptB	()	{	return	OptB;	}
+    public String getOptC	()	{	return	OptC;	}
+    public String getOptD	()	{	return	OptD;	}
+    public String getAnswer	()	{	return	Answer;	}
+
+    public void setQuestion_id	(	String	Question_id	)	{this.Question_id	=	Question_id;}
+    public void setQuestion	(	String	Question	)	{this.Question	=	Question;}
+    public void setOptA	(	String	OptA	)	{this.OptA	=	OptA;}
+    public void setOptB	(	String	OptB	)	{this.OptB	=	OptB;}
+    public void setOptC	(	String	OptC	)	{this.OptC	=	OptC;}
+    public void setOptD	(	String	OptD	)	{this.OptD	=	OptD;}
+    public void setAnswer	(	String	Answer	)	{this.Answer	=	Answer;}
+
+
 
 }
