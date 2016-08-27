@@ -22,9 +22,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     public RecyclerViewAdapter(){}
     public RecyclerViewAdapter(List<GetDataAdapter> getDataAdapter, Context context){
-
         super();
-
         this.getDataAdapter = getDataAdapter;
         this.context = context;
     }
@@ -32,12 +30,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_items,
-                parent, false);
-
-        ViewHolder viewHolder = new ViewHolder(v);
-
-        return viewHolder;
+         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.recyclerview_items,
+                    parent, false);
+         ViewHolder viewHolder = new ViewHolder(v);
+         return viewHolder;
     }
 
     @Override

@@ -16,6 +16,8 @@ public class GetDataAdapter {
     String QP_Code;
     Integer QP_Id;
 
+    Integer DOWNLOADED;
+    Integer questionNo;
 
     public String getThreadID(){
         return ThreadID;
@@ -118,5 +120,11 @@ public class GetDataAdapter {
     public void setAnswer	(	String	Answer	)	{this.Answer	=	Answer;}
 
 
+    public void setDOWNLOADED(Integer DOWNLOADED) {
+        this.DOWNLOADED = DOWNLOADED;
+    }
 
+    public int getQuestionNo() {
+        return questionNo;
+    }
 }

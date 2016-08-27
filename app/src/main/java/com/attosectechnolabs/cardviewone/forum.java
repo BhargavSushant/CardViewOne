@@ -197,17 +197,16 @@ public class forum extends AppCompatActivity
                 });
 
         requestQueue = Volley.newRequestQueue(this);
-
         requestQueue.add(jsonArrayRequest);
     }
 
     public void JSON_PARSE_DATA_AFTER_WEBCALL(JSONArray array){
 
-        for(int i = 0; i<array.length(); i++) {
-
+        for(int i = 0; i<array.length(); i++)
+        {
             GetDataAdapter GetDataAdapter2 = new GetDataAdapter();
-
             JSONObject json = null;
+
             try {
                 json = array.getJSONObject(i);
 
@@ -217,12 +216,8 @@ public class forum extends AppCompatActivity
                 GetDataAdapter2.setUser(json.getString(JSON_USER_NAME));
                 GetDataAdapter2.setFlag(json.getInt(JSON_FLAG));
                 GetDataAdapter2.setLikes(json.getInt(JSON_LIKES));
+            } catch (JSONException e) { e.printStackTrace();  }
 
-
-            } catch (JSONException e) {
-
-                e.printStackTrace();
-            }
             GetDataAdapter1.add(GetDataAdapter2);
         }
 
